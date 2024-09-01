@@ -1,24 +1,31 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import Cards from "../Cards/Cards";
 import { CompanySearch } from "../../company";
-import { searchCompanies } from "../../api";
 import { v4 as uuidv4 } from "uuid";
 
 interface Props {
   searchResults: CompanySearch[];
+  addPortfolio: (e: SyntheticEvent) => void;
 }
 
-const CardList = ({ searchResults }: Props) => {
+const CardList = ({ searchResults, addPortfolio }: Props) => {
   return (
     <>
       {searchResults.length > 0 ? (
         searchResults.map((result) => {
           return (
-            <Cards id={result.symbol} key={uuidv4()} searchResult={result} />
+            <Cards
+              addPortfolio={addPortfolio}
+              id={result.symbol}
+              key={uuidv4()}
+              searchResult={result}
+            />
           );
         })
       ) : (
-        <h3>No Result.</h3>
+        <p className="mb-3 mt-3 text-xl font-semibold text-center md:text-xl">
+          No results!
+        </p>
       )}
     </>
   );
