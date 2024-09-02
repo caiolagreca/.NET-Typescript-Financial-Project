@@ -14,4 +14,12 @@ npm i --save-dev @types/uuid
 
 npm i -D tailwindcss
 npx tailwindcss init
+
+npm i -save react-router
+npm i -save react-router-dom
+
+npm i --save @types/react-router-dom
+npm i --save @types/react-router
+
+npm i react-icons
 ```
