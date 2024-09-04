@@ -7,7 +7,6 @@ const DesignPage = () => {
     <>
       <h1>Fintech Design Page</h1>
       <h2>Here is where we will house various design aspects of the app.</h2>
-      <Table />
     </>
   );
 };

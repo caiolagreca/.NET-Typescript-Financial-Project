@@ -1,7 +1,8 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { MdAttachMoney } from "react-icons/md";
+import { LuFileSpreadsheet } from "react-icons/lu";
+import { FaCashRegister } from "react-icons/fa";
 
 type Props = {};
 
@@ -28,6 +29,20 @@ const Sidebar = (props: Props) => {
             >
               <MdAttachMoney />
               <h6 className="ml-3">Income Statement</h6>
+            </Link>
+            <Link
+              to="balance-sheet"
+              className="flex md:min-w-full text-blueGray-500 text-medium uppercase font-bold block pt--1 pb-4 no-underline"
+            >
+              <LuFileSpreadsheet />
+              <h6 className="ml-3">Balance Sheet</h6>
+            </Link>
+            <Link
+              to="balance-sheet"
+              className="flex md:min-w-full text-blueGray-500 text-medium uppercase font-bold block pt--1 pb-4 no-underline"
+            >
+              <FaCashRegister />
+              <h6 className="ml-3">Cash Flow Statement</h6>
             </Link>
           </div>
         </div>

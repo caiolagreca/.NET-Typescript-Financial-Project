@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { CompanyIncomeStatement } from "../../company";
 import { useOutletContext } from "react-router";
 import { getCompanyIncomeStatement } from "../../api";
+import Table from "../Table/Table";
 
 type Props = {};
 
@@ -74,7 +75,17 @@ const IncomeStatement = (props: Props) => {
     getIncomeStatement();
   }, []);
 
-  return <>{incomeStatementData ? <div></div> : <div></div>}</>;
+  return (
+    <>
+      {incomeStatementData ? (
+        <>
+          <Table config={configs} data={incomeStatementData} />
+        </>
+      ) : (
+        <>Loading...</>
+      )}
+    </>
+  );
 };
 
 export default IncomeStatement;

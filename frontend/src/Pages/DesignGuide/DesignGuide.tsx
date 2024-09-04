@@ -22,7 +22,7 @@ const DesignGuide = (props: Props) => {
         instructions on how to use them.
       </h1>
       <RatioList data={testIncomeStatementData} config={tableConfig} />
-      <Table />
+      <Table data={testIncomeStatementData} config={tableConfig} />
       <h3>Table -</h3>
     </>
   );
