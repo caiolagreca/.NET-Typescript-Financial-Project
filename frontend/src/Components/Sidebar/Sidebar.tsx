@@ -3,6 +3,7 @@ import { FaHome } from "react-icons/fa";
 import { MdAttachMoney } from "react-icons/md";
 import { LuFileSpreadsheet } from "react-icons/lu";
 import { FaCashRegister } from "react-icons/fa";
+import { FaChartBar } from "react-icons/fa";
 
 type Props = {};
 
@@ -38,11 +39,18 @@ const Sidebar = (props: Props) => {
               <h6 className="ml-3">Balance Sheet</h6>
             </Link>
             <Link
-              to="balance-sheet"
+              to="cash-flow"
               className="flex md:min-w-full text-blueGray-500 text-medium uppercase font-bold block pt--1 pb-4 no-underline"
             >
               <FaCashRegister />
-              <h6 className="ml-3">Cash Flow Statement</h6>
+              <h6 className="ml-3">Cash Flow</h6>
+            </Link>
+            <Link
+              to="historical-dividend"
+              className="flex md:min-w-full text-blueGray-500 text-medium uppercase font-bold block pt--1 pb-4 no-underline"
+            >
+              <FaChartBar />
+              <h6 className="ml-3">Historial Dividend</h6>
             </Link>
           </div>
         </div>

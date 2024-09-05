@@ -5,6 +5,7 @@ import { useParams } from "react-router";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import CompanyDashboard from "../../Components/CompanyDashboard/CompanyDashboard";
 import Tile from "../../Components/Tile/Tile";
+import Spinners from "../../Components/Spinners/Spinners";
 
 interface Props {}
 
@@ -27,10 +28,19 @@ const CompanyPage = (props: Props) => {
           <Sidebar />
           <CompanyDashboard ticker={ticker!}>
             <Tile title="Company Name" subtitle={company.companyName} />
+            <Tile
+              title="Price"
+              subtitle={"$" + company.price.toString()}
+            />{" "}
+            <Tile title="Sector" subtitle={company.sector} />
+            <Tile title="DCF" subtitle={"$" + company.dcf.toString()} />{" "}
+            <p className="bh-white p-6 shadow rounded text-medium text-gray">
+              {company.description}
+            </p>
           </CompanyDashboard>
         </div>
       ) : (
-        <div>Company not found!</div>
+        <Spinners />
       )}
     </>
   );
