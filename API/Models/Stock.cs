@@ -17,7 +17,7 @@ namespace API.Models
         public decimal LastDivd { get; set; }
         public string Industry { get; set; } = string.Empty;
         public long MarketCap { get; set; }
-        public List<Comment> Comments = new List<Comment>();
+        public List<Comment> Comments { get; set; } = new List<Comment>();
 
     }
 }

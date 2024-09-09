@@ -21,6 +21,8 @@ NuGet Packages installed:
 Microsoft.EntityFrameworkCore.SqlServer
 Microsoft.EntityFrameworkCore.Tools
 Microsoft.EntityFrameworkCore.Design
+Newtonsoft.Json
+Microsoft.AspNetCore.Mvc.NewtonsoftJson
 
 Running Migrations:
 dotnet ef migrations add Init
