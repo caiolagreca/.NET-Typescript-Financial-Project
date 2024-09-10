@@ -34,6 +34,24 @@ namespace API.Repositories
             return commentModel;
         }
 
+        public async Task<Comment?> UpdateCommentAsync(int id, Comment commentModel)
+        {
+            var existingComment = await _context.Comments.FirstOrDefaultAsync(c => c.Id == id);
+
+            if (existingComment == null)
+            {
+                return null;
+            }
+
+            existingComment.Title = commentModel.Title;
+            existingComment.Content = commentModel.Content;
+
+            await _context.SaveChangesAsync();
+            return existingComment;
+        }
+
+
+
         public async Task<Comment> DeleteCommentAsync(int id)
         {
             var commentModel = await _context.Comments.FirstOrDefaultAsync(x => x.Id == id);

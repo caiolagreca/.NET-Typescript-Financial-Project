@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
 using API.Dtos.Stock;
+using API.Helpers;
 using API.Interfaces;
 using API.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace API.Repositories
 {
@@ -18,9 +20,29 @@ namespace API.Repositories
         {
             _context = context;
         }
-        public Task<List<Stock>> GetAllStocksAsync()
+        public async Task<List<Stock>> GetAllStocksAsync(ObjectQuery query)
         {
-            return _context.Stocks.Include(c => c.Comments).ToListAsync();
+            var stocks = _context.Stocks.Include(c => c.Comments).AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(query.Symbol))
+            {
+                stocks = stocks.Where(c => c.Symbol.Contains(query.Symbol));
+            }
+
+            if (!string.IsNullOrWhiteSpace(query.CompanyName))
+            {
+                stocks = stocks.Where(c => c.CompanyName.Contains(query.CompanyName));
+            }
+
+            if (!string.IsNullOrWhiteSpace(query.SortBy))
+            {
+                if (query.SortBy.Equals("Symbol", StringComparison.OrdinalIgnoreCase))
+                {
+                    stocks = query.IsDescending ? stocks.OrderByDescending(s => s.Symbol) : stocks.OrderBy(s => s.Symbol);
+                }
+            }
+
+            return await stocks.ToListAsync();
         }
 
         public async Task<Stock?> GetStockByIdAsync(int id)
@@ -35,24 +57,24 @@ namespace API.Repositories
             return stockModel;
         }
 
-        public async Task<Stock?> UpdateStockAsync(int id, UpdateStockDto updateDto)
+        public async Task<Stock?> UpdateStockAsync(int id, Stock updateModel)
         {
-            var stockModel = await _context.Stocks.FirstOrDefaultAsync(x => x.Id == id);
+            var existingStock = await _context.Stocks.FirstOrDefaultAsync(x => x.Id == id);
 
-            if (stockModel == null)
+            if (existingStock == null)
             {
                 return null;
             }
 
-            stockModel.Symbol = updateDto.Symbol;
-            stockModel.CompanyName = updateDto.CompanyName;
-            stockModel.Purchase = updateDto.Purchase;
-            stockModel.LastDivd = updateDto.LastDivd;
-            stockModel.Industry = updateDto.Industry;
-            stockModel.MarketCap = updateDto.MarketCap;
+            existingStock.Symbol = updateModel.Symbol;
+            existingStock.CompanyName = updateModel.CompanyName;
+            existingStock.Purchase = updateModel.Purchase;
+            existingStock.LastDivd = updateModel.LastDivd;
+            existingStock.Industry = updateModel.Industry;
+            existingStock.MarketCap = updateModel.MarketCap;
 
             await _context.SaveChangesAsync();
-            return stockModel;
+            return existingStock;
         }
 
         public async Task<Stock> DeleteStockAsync(int id)

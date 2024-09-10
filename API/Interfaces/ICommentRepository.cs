@@ -11,6 +11,7 @@ namespace API.Interfaces
         public Task<List<Comment>> GetAllCommentAsync();
         public Task<Comment?> GetCommentByIdAsync(int id);
         public Task<Comment> CreateCommentAsync(Comment commentModel);
+        public Task<Comment?> UpdateCommentAsync(int id, Comment commentModel);
         public Task<Comment> DeleteCommentAsync(int id);
     }
 }
