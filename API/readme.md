@@ -23,6 +23,9 @@ Microsoft.EntityFrameworkCore.Tools
 Microsoft.EntityFrameworkCore.Design
 Newtonsoft.Json
 Microsoft.AspNetCore.Mvc.NewtonsoftJson
+Microsoft.Extensions.Identity.Core
+Microsoft.AspNetCore.Identity.EntityFrameworkCore
+Microsoft.AspNetCore.Authentication.JwtBearer
 
 Running Migrations:
 dotnet ef migrations add Init
