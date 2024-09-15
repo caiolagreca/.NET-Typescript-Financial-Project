@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using api.Dtos.Stock;
 using API.Dtos.Stock;
 using API.Models;
 
@@ -52,6 +53,21 @@ namespace API.Mappers
                 MarketCap = stockDto.MarketCap
             };
         }
+
+        public static Stock ToStockFromFMP(this FMPStock fmpStock)
+        {
+            //Aqui convertemos um objeto "CreateStockRequestDto"(que contem os dados que o cliente enviou no POST) para um objeto "Stock"(Model que será salvo no banco de dados) persistindo esses dados.
+            return new Stock
+            {
+                Symbol = fmpStock.symbol,
+                CompanyName = fmpStock.companyName,
+                Purchase = fmpStock.purchase,
+                LastDivd = fmpStock.lastDiv,
+                Industry = fmpStock.industry,
+                MarketCap = fmpStock.marketCap
+            };
+        }
+
 
     }
 }

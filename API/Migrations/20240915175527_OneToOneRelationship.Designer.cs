@@ -4,6 +4,7 @@ using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240915175527_OneToOneRelationship")]
+    partial class OneToOneRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -95,8 +98,10 @@ namespace API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AppUserId")
-                        .IsRequired()
+                    b.Property<int?>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("AppUserId1")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Content")
@@ -115,7 +120,7 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("AppUserId1");
 
                     b.HasIndex("StockId");
 
@@ -200,13 +205,13 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "83554795-9b82-4eee-acfb-d6031c7a409d",
+                            Id = "9460d43c-9682-46d7-918d-55167d089c92",
                             Name = "user",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "4b1709a3-b52d-445e-b1c3-b6bdab0d6764",
+                            Id = "1d6e6765-5ab7-4023-bff2-3b3fdc6df9c6",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -322,9 +327,7 @@ namespace API.Migrations
                 {
                     b.HasOne("API.Models.AppUser", "AppUser")
                         .WithMany()
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AppUserId1");
 
                     b.HasOne("API.Models.Stock", "Stock")
                         .WithMany("Comments")
