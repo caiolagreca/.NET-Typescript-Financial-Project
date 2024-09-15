@@ -17,9 +17,10 @@ namespace API.Data
         {
             builder.Entity<Stock>().HasMany(s => s.Comments).WithOne(c => c.Stock).HasForeignKey(c => c.StockId).OnDelete(DeleteBehavior.Cascade);
 
+            //A combinação dos campos StockId e AppUserId será usada como a chave primária da tabela Portfolios.
             builder.Entity<Portfolio>(x => x.HasKey(p => new { p.StockId, p.AppUserId }));
-            builder.Entity<Portfolio>().HasOne(x => x.Stock).WithMany(x => x.Portfolios).HasForeignKey(x => x.StockId);
 
+            builder.Entity<Portfolio>().HasOne(x => x.Stock).WithMany(x => x.Portfolios).HasForeignKey(x => x.StockId);
             builder.Entity<Portfolio>().HasOne(x => x.AppUser).WithMany(x => x.Portfolios).HasForeignKey(x => x.AppUserId);
 
             List<IdentityRole> roles = new List<IdentityRole>
