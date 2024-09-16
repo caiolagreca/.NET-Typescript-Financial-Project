@@ -17,6 +17,8 @@ builder.Services.AddScoped<IStockRepository, StockRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<IPortfolioRepository, PortfolioRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IFMPService, FMPService>();
+builder.Services.AddHttpClient<IFMPService, FMPService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(option =>
@@ -101,6 +103,14 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseHttpsRedirection();
+
+app.UseCors(x => x
+        .AllowCredentials()
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        //.WithOrigins("https://localhost:5200")
+        .SetIsOriginAllowed(origin => true));
+
 app.MapControllers();
 
 app.Run();
