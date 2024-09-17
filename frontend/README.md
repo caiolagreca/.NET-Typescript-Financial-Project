@@ -24,6 +24,8 @@ npm i --save @types/react-router
 npm i react-icons
 
 npm i react-spinners /* loading spinners components */
+
+npm i react-toastify
 ```
 
 Como saber quando instalar uma biblioteca com os tipos separadamentes:
