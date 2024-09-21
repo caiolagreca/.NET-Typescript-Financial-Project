@@ -43,26 +43,23 @@ retorna True se existir um State "user"
 
 - Retorno do Componente:
 1. UserContext.Provider passa todas as funcoes e valores utilizadas pelo atributo value
-2. Ceritifique-se de que o so ira renderizar o Children quando os States estiverem prontos (utiliza o estado isReady como True para isso).
+2. Ceritifique-se de que so ira renderizar o Children quando os States estiverem prontos (utiliza o estado isReady como True para isso).
 
 - Criamos um Custom Hook:
 Eh uma função personalizada que encapsula o useContext para facilitar o acesso ao UserContext.
 Utiliza o UserContext para acessar os dados armazenados no Context.
 Faz com que nao seja preciso chamar o useContext(UserContext) em cada componente.
 
-
-
 */
-
 import React, { createContext, useEffect, useState } from "react";
-import { UserProfile } from "../Models/User";
+import { IUserProfile } from "../Models/User";
 import { useNavigate } from "react-router";
 import { loginAPI, registerAPI } from "../Services/AuthService";
 import { toast } from "react-toastify";
 import axios from "axios";
 
 interface IUserContext {
-  user: UserProfile | null;
+  user: IUserProfile | null;
   token: string | null;
   registerUser: (username: string, password: string, email: string) => void;
   loginUser: (username: string, password: string) => void;
@@ -76,7 +73,7 @@ const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: Props) => {
   const navigate = useNavigate();
-  const [user, setUser] = useState<UserProfile | null>(null);
+  const [user, setUser] = useState<IUserProfile | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [isReady, setIsReady] = useState(false);
 

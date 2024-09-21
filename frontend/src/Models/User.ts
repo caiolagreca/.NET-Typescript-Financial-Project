@@ -2,16 +2,14 @@
 Sao usadas para tipar o retorno de chamadas de login/register e o estado do User no frontend.
 */
 
-
-
-/* export interface IUserProfileToken {
+export interface IUserProfileToken {
   userName: string;
   email: string;
   token: string;
 }
 
-export interface UserProfile {
+export interface IUserProfile {
   userName: string;
   email: string;
 }
- */
+ 
