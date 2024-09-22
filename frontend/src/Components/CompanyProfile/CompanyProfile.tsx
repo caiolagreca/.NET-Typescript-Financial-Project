@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { CompanyKeyMetrics } from "../../company";
 import { getCompanyKetMetrics } from "../../api";
-import { useOutletContext, useParams } from "react-router";
+import { useOutletContext } from "react-router";
 import RatioList from "../RatioList/RatioList";
 import Spinners from "../Spinners/Spinners";
 import {
   formatLargeNonMonetaryNumber,
   formatRatio,
 } from "../Helpers/NumberFormatting";
-import ComponentPost from "../ComponentPost/ComponentPost";
+import CommentPost from "../CommentPost/CommentPost";
 
 type Props = {};
 
@@ -99,7 +99,7 @@ const CompanyProfile = (props: Props) => {
         {companyData ? (
           <>
             <RatioList data={companyData} config={tableConfig} />
-            <ComponentPost stockSymbol={ticker} />
+            <CommentPost stockSymbol={ticker} />
           </>
         ) : (
           <Spinners />

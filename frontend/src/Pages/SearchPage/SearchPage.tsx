@@ -1,5 +1,4 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from "react";
-import Navbar from "../../Components/Navbar/Navbar";
 import Search from "../../Components/Search/Search";
 import PortfolioList from "../../Components/PortfolioList/PortfolioList";
 import CardList from "../../Components/CardList/CardList";
