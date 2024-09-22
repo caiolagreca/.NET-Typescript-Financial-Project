@@ -26,6 +26,8 @@ npm i react-icons
 npm i react-spinners /* loading spinners components */
 
 npm i react-toastify
+
+npm i react-hook-form yup @hookform/resolvers
 ```
 
 Como saber quando instalar uma biblioteca com os tipos separadamentes:
