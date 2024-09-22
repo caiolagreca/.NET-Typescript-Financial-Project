@@ -4,7 +4,11 @@ import { getCompanyKetMetrics } from "../../api";
 import { useOutletContext, useParams } from "react-router";
 import RatioList from "../RatioList/RatioList";
 import Spinners from "../Spinners/Spinners";
-import { formatLargeNonMonetaryNumber, formatRatio } from "../Helpers/NumberFormatting";
+import {
+  formatLargeNonMonetaryNumber,
+  formatRatio,
+} from "../Helpers/NumberFormatting";
+import ComponentPost from "../ComponentPost/ComponentPost";
 
 type Props = {};
 
@@ -95,6 +99,7 @@ const CompanyProfile = (props: Props) => {
         {companyData ? (
           <>
             <RatioList data={companyData} config={tableConfig} />
+            <ComponentPost stockSymbol={ticker} />
           </>
         ) : (
           <Spinners />
