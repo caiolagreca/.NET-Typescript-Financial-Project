@@ -1,8 +1,9 @@
 import React, { SyntheticEvent } from "react";
 import PortfolioItem from "../PortfolioItem/PortfolioItem";
+import { IPortfolioGet } from "../../Models/Portfolio";
 
 interface IProps {
-  portfolioValues: string[];
+  portfolioValues: IPortfolioGet[];
   deletePortfolio: (e: SyntheticEvent) => void;
 }
 

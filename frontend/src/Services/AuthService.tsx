@@ -11,12 +11,12 @@ import { handleError } from "../Helpers/HandleError";
 import axios from "axios";
 import { IUserProfileToken } from "../Models/User";
 
-const api = "http://localhos:5200/api/";
+const api = "http://localhos:5200/api/account/";
 
 export const loginAPI = async (username: string, password: string) => {
   try {
     //Envia o userName e password como objeto para o servidor validar, e dando sucesso, retorna o tipo IUserProfileToken com token, email e userName
-    const data = await axios.post<IUserProfileToken>(api + "account/login", {
+    const data = await axios.post<IUserProfileToken>(api + "login", {
       username: username,
       password: password,
     });
@@ -32,7 +32,7 @@ export const registerAPI = async (
   email: string
 ) => {
   try {
-    const data = await axios.post<IUserProfileToken>(api + "account/register", {
+    const data = await axios.post<IUserProfileToken>(api + "register", {
       username: username,
       password: password,
       email: email,
