@@ -7,13 +7,13 @@ type Props = {
 
 const CommentList = ({ comments }: Props) => {
   return (
-    <>
+    <div className="space-y-4">
       {comments
-        ? comments.map((comment) => {
-            return <CommentListItem comment={comment} />;
-          })
+        ? comments.map((comment, index) => (
+            <CommentListItem key={index} comment={comment} />
+          ))
         : ""}
-    </>
+    </div>
   );
 };
 

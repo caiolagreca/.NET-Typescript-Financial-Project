@@ -8,12 +8,13 @@ type Props = {
 
 function CompanyDashboard({ children, ticker }: Props) {
   return (
-    <div className="relative md:ml-64 bg-blueGray-100 w-full">
-      <div className="relative pt-20 pb-32 bg-lightBlue-500">
+    <div className="relative bg-gray-900 text-white min-h-screen flex flex-col md:ml-64">
+      <div className="bg-lightGreen py-12">
         <div className="px-4 md:px-6 mx-auto w-full">
-          <div>
-            <div className="flex flex-wrap">{children}</div>
-            <div className="flex flex-wrap">{<Outlet context={ticker} />}</div>
+          <h1 className="text-4xl font-bold text-center mb-8">{ticker}</h1>
+          <div className="flex flex-wrap">{children}</div>
+          <div className="flex flex-wrap">
+            <Outlet context={ticker} />
           </div>
         </div>
       </div>

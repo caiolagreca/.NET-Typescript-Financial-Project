@@ -12,7 +12,7 @@ const OnPortfolio = ({ addPortfolio, symbol }: IProps) => {
     <div className="flex flex-col items-center justify-end flex-1 space-x-4 space-y-2 md:flex-row md:space-y-0">
       <form onSubmit={addPortfolio}>
         <input readOnly={true} hidden={true} value={symbol} />
-        <Button size="small" color="primary" startIcon={<AddIcon />}>
+        <Button type="submit" size="small" color="primary" startIcon={<AddIcon />}>
           Add
         </Button>
       </form>

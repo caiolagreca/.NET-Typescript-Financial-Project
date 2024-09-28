@@ -45,12 +45,9 @@ const CommentPost = ({ stockSymbol }: Props) => {
       });
   };
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col space-y-6 bg-gray-900 p-4 rounded-lg shadow-lg">
       {isLoading ? <Spinners /> : <CommentList comments={stockComments!} />}
-      <ComponentPostForm
-        symbol={stockSymbol}
-        handlePostComment={handlePostComment}
-      />
+      <ComponentPostForm symbol={stockSymbol} handlePostComment={handlePostComment} />
     </div>
   );
 };

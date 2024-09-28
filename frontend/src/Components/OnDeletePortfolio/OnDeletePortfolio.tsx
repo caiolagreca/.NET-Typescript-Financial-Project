@@ -13,7 +13,7 @@ const OnDeletePortfolio = ({ deletePortfolio, portfolioValue }: IProps) => {
     <>
       <form onSubmit={deletePortfolio}>
         <input hidden={true} value={portfolioValue.symbol} />
-        <Button size="small" color="secondary" startIcon={<DeleteIcon />} sx={{ borderRadius: '8px' }}>
+        <Button type="submit" size="small" color="secondary" startIcon={<DeleteIcon />} sx={{ borderRadius: '8px' }}>
           Delete
         </Button>
       </form>

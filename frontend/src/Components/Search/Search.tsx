@@ -30,7 +30,7 @@ const Search: FC<Props> = ({
           <Grid item xs={10}>
             <TextField
               fullWidth
-              placeholder="Digite o nome ou símbolo da empresa"
+              placeholder="Digit the Company's Symbol"
               value={search}
               onChange={onHandleChange}
               variant="outlined"

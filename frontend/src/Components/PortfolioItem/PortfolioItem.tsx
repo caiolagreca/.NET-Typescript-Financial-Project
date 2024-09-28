@@ -30,7 +30,7 @@ const PortfolioItem = ({ portfolioValue, deletePortfolio }: IProps) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <OnDeletePortfolio
+        <OnDeletePortfolio  
           portfolioValue={portfolioValue}
           deletePortfolio={deletePortfolio}
         />

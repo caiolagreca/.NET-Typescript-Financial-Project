@@ -11,12 +11,13 @@ type Props = {
 const Table = ({ config, data }: Props) => {
   const renderedRows = data.map((company: any) => {
     return (
-      <tr key={company.cik}>
+      <tr
+        key={company.cik}
+        className="border-b border-gray-700 last:border-none"
+      >
         {config.map((val: any) => {
           return (
-            <td className="p-3 whitespace-nowrap text-sm font-normal text-gray-900">
-              {val.render(company)}
-            </td>
+            <td className="p-4 text-sm text-gray-200">{val.render(company)}</td>
           );
         })}
       </tr>
@@ -25,7 +26,7 @@ const Table = ({ config, data }: Props) => {
   const renderedHeaders = config.map((config: any) => {
     return (
       <th
-        className="p-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider"
+        className="p-4 text-left text-sm font-semibold text-gray-300 uppercase tracking-wider"
         key={config.label}
       >
         {config.label}
@@ -33,9 +34,11 @@ const Table = ({ config, data }: Props) => {
     );
   });
   return (
-    <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
-      <table>
-        <thead className="min-w-full divide-y divide">{renderedHeaders}</thead>
+    <div className="bg-gray-800 shadow-lg rounded-lg p-6">
+      <table className="min-w-full">
+        <thead className="border-b border-gray-700">
+          <tr>{renderedHeaders}</tr>
+        </thead>
         <tbody>{renderedRows}</tbody>
       </table>
     </div>

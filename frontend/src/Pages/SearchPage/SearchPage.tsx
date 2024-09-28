@@ -11,7 +11,7 @@ import {
   postPortfolioAPI,
 } from "../../Services/PortfolioService";
 import { toast } from "react-toastify";
-import { Container, Grid, Typography, CircularProgress } from "@mui/material";
+import { Container, Grid, Typography, CircularProgress, Divider } from "@mui/material";
 
 interface Props {}
 
@@ -99,6 +99,7 @@ const SearchPage = (props: Props) => {
         deletePortfolio={onDeletePortfolio}
         portfolioValues={portfolioValues!}
       />
+      <Divider sx={{ marginY: 4 }} />
       {serverError && (
         <Typography variant="h6" color="error" align="center">
           Não foi possível conectar à API.

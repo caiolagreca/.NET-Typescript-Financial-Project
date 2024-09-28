@@ -1,13 +1,4 @@
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, Tooltip } from "recharts";
 
 type Props = {
   data: any;
@@ -17,28 +8,28 @@ type Props = {
 
 const SimpleLineChart = ({ data, xAxis, dataKey }: Props) => {
   return (
-    <>
-      <ResponsiveContainer width={"99%"} height={500}>
-        <LineChart
-          data={data}
-          margin={{
-            top: 100,
-            right: 100,
-            left: 10,
-            bottom: 5,
-          }}
-        >
-          <Line
-            type="monotone"
-            dataKey={dataKey}
-            stroke="#8884d8"
-            activeDot={{ r: 8 }}
-          />
-          <XAxis dataKey={xAxis} />
-          <YAxis />
-        </LineChart>
-      </ResponsiveContainer>
-    </>
+    <ResponsiveContainer width="100%" height={500}>
+      <LineChart
+        data={data}
+        margin={{
+          top: 50,
+          right: 50,
+          left: 20,
+          bottom: 10,
+        }}
+      >
+        <Line
+          type="monotone"
+          dataKey={dataKey}
+          stroke="#00C49F" // Alterando a cor da linha para verde claro
+          strokeWidth={2}
+          activeDot={{ r: 8 }}
+        />
+        <XAxis dataKey={xAxis} />
+        <YAxis />
+        <Tooltip />
+      </LineChart>
+    </ResponsiveContainer>
   );
 };
 

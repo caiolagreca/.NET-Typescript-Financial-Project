@@ -6,17 +6,17 @@ type Props = {
 const RatioList = ({ config, data }: Props) => {
   const renderedRows = config.map((row: any) => {
     return (
-      <li className="py-3 sm:py-4">
+      <li className="py-4 border-b border-gray-700 last:border-none">
         <div className="flex items-center space-x-4">
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-gray-900 truncate">
+            <p className="text-sm font-medium text-gray-200 truncate">
               {row.label}
             </p>
-            <p className="text-sm text-gray-500 truncate">
+            <p className="text-sm text-gray-400 truncate">
               {row.subTitle && row.subTitle}
             </p>
           </div>
-          <div className="inline-flex items-center text-base font-semibold text-gray-900">
+          <div className="inline-flex items-center text-base font-semibold text-lightGreen">
             {row.render(data)}
           </div>
         </div>
@@ -24,8 +24,8 @@ const RatioList = ({ config, data }: Props) => {
     );
   });
   return (
-    <div className="bg-white shadow rounded-lg ml-4 mt-4 mb-4 p-4 sm:p-6">
-      <ul className="divide-y divided-gray-200">{renderedRows}</ul>
+    <div className="bg-gray-800 shadow-lg rounded-lg p-6">
+      <ul className="divide-y divide-gray-700">{renderedRows}</ul>
     </div>
   );
 };

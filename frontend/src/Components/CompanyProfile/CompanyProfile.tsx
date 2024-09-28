@@ -95,7 +95,7 @@ const CompanyProfile = (props: Props) => {
 
   return (
     <>
-      <h1>
+      <h1 className="space-y-4">
         {companyData ? (
           <>
             <RatioList data={companyData} config={tableConfig} />
