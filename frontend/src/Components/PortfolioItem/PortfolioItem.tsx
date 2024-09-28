@@ -2,6 +2,7 @@ import React, { SyntheticEvent } from "react";
 import OnDeletePortfolio from "../OnDeletePortfolio/OnDeletePortfolio";
 import { Link } from "react-router-dom";
 import { IPortfolioGet } from "../../Models/Portfolio";
+import { Card, CardContent, CardActions, Typography } from "@mui/material";
 
 interface IProps {
   deletePortfolio: (e: SyntheticEvent) => void;
@@ -10,18 +11,31 @@ interface IProps {
 
 const PortfolioItem = ({ portfolioValue, deletePortfolio }: IProps) => {
   return (
-    <div className="flex flex-col w-full p-8 space-y-4 text-center rounded-lg shadow-lg md:w-1/3">
-      <Link
-        to={`/company/${portfolioValue.symbol}/company-profile`}
-        className="pt-6 text-xl font-bold"
-      >
-        {portfolioValue.symbol}
-      </Link>
-      <OnDeletePortfolio
-        portfolioValue={portfolioValue}
-        deletePortfolio={deletePortfolio}
-      />
-    </div>
+    <Card
+      variant="outlined"
+      sx={{
+        backgroundColor: "background.paper",
+        borderRadius: 1,
+        marginTop: 3,
+      }}
+    >
+      <CardContent>
+        <Typography
+          variant="h6"
+          component={Link}
+          to={`/company/${portfolioValue.symbol}/company-profile`}
+          sx={{ textDecoration: 'none', color: 'text.primary' }}
+        >
+          {portfolioValue.symbol}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <OnDeletePortfolio
+          portfolioValue={portfolioValue}
+          deletePortfolio={deletePortfolio}
+        />
+      </CardActions>
+    </Card>
   );
 };
 

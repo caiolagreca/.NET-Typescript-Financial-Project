@@ -28,6 +28,9 @@ npm i react-spinners /* loading spinners components */
 npm i react-toastify
 
 npm i react-hook-form yup @hookform/resolvers
+
+npm install @mui/material @emotion/react @emotion/styled
+npm install @mui/icons-material
 ```
 
 Como saber quando instalar uma biblioteca com os tipos separadamentes:

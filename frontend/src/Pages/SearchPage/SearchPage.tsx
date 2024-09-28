@@ -11,6 +11,7 @@ import {
   postPortfolioAPI,
 } from "../../Services/PortfolioService";
 import { toast } from "react-toastify";
+import { Container, Grid, Typography, CircularProgress } from "@mui/material";
 
 interface Props {}
 
@@ -21,6 +22,7 @@ const SearchPage = (props: Props) => {
   const [portfolioValues, setPortfolioValues] = useState<
     IPortfolioGet[] | null
   >([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     onPortfolioFetch();
@@ -71,7 +73,9 @@ const SearchPage = (props: Props) => {
 
   const onSearchSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
+    setLoading(true);
     const result = await searchCompanies(search);
+    setLoading(false);
     if (typeof result === "string") {
       setServerError(result);
     } else if (Array.isArray(result.data)) {
@@ -80,24 +84,33 @@ const SearchPage = (props: Props) => {
     console.log(searchResult);
   };
   return (
-    <>
-      <div className="App">
-        <Search
-          search={search}
-          onHandleChange={handleSearchChange}
-          onSearchSubmit={onSearchSubmit}
-        />
-        <PortfolioList
-          deletePortfolio={onDeletePortfolio}
-          portfolioValues={portfolioValues!}
-        />
-        {serverError && <h1>Unable to Connect API</h1>}
+    <Container maxWidth="md" sx={{ mt: 4 }}>
+      <Search
+        search={search}
+        onHandleChange={handleSearchChange}
+        onSearchSubmit={onSearchSubmit}
+      />
+      {loading && (
+        <Grid container justifyContent="center" sx={{ marginTop: 4 }}>
+          <CircularProgress />
+        </Grid>
+      )}
+      <PortfolioList
+        deletePortfolio={onDeletePortfolio}
+        portfolioValues={portfolioValues!}
+      />
+      {serverError && (
+        <Typography variant="h6" color="error" align="center">
+          Não foi possível conectar à API.
+        </Typography>
+      )}
+      {!loading && searchResult.length > 0 && (
         <CardList
           addPortfolio={onPortfolioCreate}
           searchResults={searchResult}
         />
-      </div>
-    </>
+      )}
+    </Container>
   );
 };
 

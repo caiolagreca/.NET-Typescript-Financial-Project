@@ -2,6 +2,7 @@ import React, { SyntheticEvent } from "react";
 import { CompanySearch } from "../../company";
 import OnPortfolio from "../OnPortfolio/OnPortfolio";
 import { Link } from "react-router-dom";
+import { Card, CardContent, CardActions, Typography } from "@mui/material";
 
 interface Props {
   id: string;
@@ -15,23 +16,24 @@ const Cards: React.FC<Props> = ({
   addPortfolio,
 }: Props): JSX.Element => {
   return (
-    <div
-      className="flex flex-col items-center justify-between w-full p-6 bg-slate-100 rounded-lg md:flex-row"
-      key={id}
-      id={id}
-    >
-      <Link
-        to={`/company/${searchResult.symbol}/company-profile`}
-        className="font-bold text-center text-black md:text-left"
-      >
-        {searchResult.name} ({searchResult.symbol})
-      </Link>
-      <p className="text-black">{searchResult.currency}</p>
-      <p className="font-bold text-black">
-        {searchResult.exchangeShortName} - {searchResult.stockExchange}
-      </p>
-      <OnPortfolio symbol={searchResult.symbol} addPortfolio={addPortfolio} />
-    </div>
+    <Card variant="outlined">
+      <CardContent>
+        <Typography
+          variant="h6"
+          component={Link}
+          to={`/company/${searchResult.symbol}/company-profile`}
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          {searchResult.name} ({searchResult.symbol})
+        </Typography>
+        <Typography variant="body2" color="textSecondary">
+          {searchResult.exchangeShortName} - {searchResult.stockExchange}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <OnPortfolio symbol={searchResult.symbol} addPortfolio={addPortfolio} />
+      </CardActions>
+    </Card>
   );
 };
 

@@ -1,4 +1,13 @@
 import React, { ChangeEvent, FC, SyntheticEvent } from "react";
+import {
+  Container,
+  Grid,
+  Typography,
+  TextField,
+  Button,
+  Paper,
+} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 
 interface Props {
   search: string | undefined;
@@ -12,22 +21,36 @@ const Search: FC<Props> = ({
   onHandleChange,
 }: Props): JSX.Element => {
   return (
-    <section className="relative bg-gray-100">
-      <div className="max-w-4xl mx-auto p-6 space-y-6">
-        <form
-          className="form relative flex flex-col w-full p-10 space-y-4 bg-darkBlue rounded-lg md:flex-row md:space-y-0 md:space-x-3"
-          onSubmit={onSearchSubmit}
-        >
-          <input
-            className="flex-1 p-3 border-2 rounded-lg placeholder-black focus:outline-none"
-            id="search-input"
-            placeholder="Search companies"
-            value={search}
-            onChange={onHandleChange}
-          ></input>
-        </form>
-      </div>
-    </section>
+    <Paper elevation={3} sx={{ p: 4, borderRadius: 4 }}>
+      <Typography variant="h4" align="center" gutterBottom>
+        Search companies
+      </Typography>
+      <form onSubmit={onSearchSubmit}>
+        <Grid container spacing={2} alignItems="center">
+          <Grid item xs={10}>
+            <TextField
+              fullWidth
+              placeholder="Digite o nome ou símbolo da empresa"
+              value={search}
+              onChange={onHandleChange}
+              variant="outlined"
+            />
+          </Grid>
+          <Grid item xs={2}>
+            <Button
+              fullWidth
+              type="submit"
+              variant="contained"
+              color="primary"
+              startIcon={<SearchIcon />}
+              sx={{ borderRadius: "8px" }}
+            >
+              Search
+            </Button>
+          </Grid>
+        </Grid>
+      </form>
+    </Paper>
   );
 };
 
