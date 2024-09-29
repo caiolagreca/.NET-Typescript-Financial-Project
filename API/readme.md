@@ -1,8 +1,8 @@
 # creating API template:
 
-```javascript
+```csharp
 //"-o" says to create the tempalte inside the folder called API
-npm new webapi -o API
+dotnet new webapi -o API
 
 //Enable hot reload
 dotnet watch run
