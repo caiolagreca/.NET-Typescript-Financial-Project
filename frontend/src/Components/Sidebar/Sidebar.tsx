@@ -47,6 +47,13 @@ const Sidebar = (props: Props) => {
             <FaChartBar className="text-lightGreen mr-3" />
             <span>Historial Dividend</span>
           </Link>
+          <Link
+            to="/"
+            className="flex items-center text-white font-semibold text-sm uppercase py-3 hover:text-lightGreen transition-all"
+          >
+            <FaChartBar className="text-lightGreen mr-3" />
+            <span>Back To Home Page</span>
+          </Link>
         </div>
       </div>
     </nav>
