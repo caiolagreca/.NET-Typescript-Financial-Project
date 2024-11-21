@@ -30,3 +30,4 @@ Microsoft.AspNetCore.Authentication.JwtBearer
 Running Migrations:
 dotnet ef migrations add Init
 dotnet ef dabatase update
+

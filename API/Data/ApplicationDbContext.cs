@@ -27,7 +27,7 @@ namespace API.Data
             {
                 new IdentityRole{
                     Name = "user",
-                    NormalizedName = "USER"
+                    NormalizedName = "USER" 
                 },
                 new IdentityRole{
                     Name = "admin",

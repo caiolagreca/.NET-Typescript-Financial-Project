@@ -5,6 +5,7 @@ using API.Repositories;
 using API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -57,7 +58,11 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 });
 
-builder.Services.AddDbContext<ApplicationDbContext>((options) => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+var connectionString = builder.Configuration.GetConnectionString("FinanceTechConnection");
+Console.WriteLine($"Connection String: {connectionString}");
+
+builder.Services.AddDbContext<ApplicationDbContext>((options) => options.UseSqlServer(builder.Configuration.GetConnectionString("FinanceTechConnection")));
+
 
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 {
@@ -89,6 +94,13 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+builder.Services.AddLogging(logging =>
+{
+    logging.ClearProviders();
+    logging.AddConsole();
+    logging.AddDebug();
+});
+
 
 var app = builder.Build();
 
@@ -108,7 +120,7 @@ app.UseCors(x => x
         .AllowCredentials()
         .AllowAnyHeader()
         .AllowAnyMethod()
-        //.WithOrigins("https://localhost:5200")
+        .WithOrigins("https://localhost:5200")
         .SetIsOriginAllowed(origin => true));
 
 app.MapControllers();

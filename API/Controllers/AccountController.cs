@@ -54,16 +54,33 @@ namespace API.Controllers
                     }
                     else
                     {
-                        return StatusCode(500, roleResult.Errors);
+                        foreach (var error in roleResult.Errors)
+                        {
+                            Console.WriteLine($"Code: {error.Code}, Description: {error.Description}");
+                        }
+                        return BadRequest(new
+                        {
+                            Message = "Adding user to role failed",
+                            Errors = roleResult.Errors.Select(e => new { e.Code, e.Description })
+                        });
                     }
                 }
                 else
                 {
-                    return StatusCode(500, createdUser.Errors);
+                    foreach (var error in createdUser.Errors)
+                    {
+                        Console.WriteLine($"Code: {error.Code}, Description: {error.Description}");
+                    }
+                    return BadRequest(new
+                    {
+                        Message = "User creation failed",
+                        Errors = createdUser.Errors.Select(e => new { e.Code, e.Description })
+                    });
                 }
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
                 return StatusCode(500, e);
             }
         }
